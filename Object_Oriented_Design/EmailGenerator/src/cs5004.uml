@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>edu.neu.ccs.cs5004</OriginalElement>
+  <nodes>
+    <node x="495.0" y="687.0">edu.neu.ccs.cs5004.TxtReaderTest</node>
+    <node x="329.0" y="339.0">edu.neu.ccs.cs5004.CsvParser</node>
+    <node x="718.0" y="546.0">edu.neu.ccs.cs5004.TxtWriterTest</node>
+    <node x="0.0" y="805.0">edu.neu.ccs.cs5004.TxtWriter</node>
+    <node x="479.0" y="546.0">edu.neu.ccs.cs5004.CsvParserTest</node>
+    <node x="0.0" y="339.0">edu.neu.ccs.cs5004.TextReplacerTest</node>
+    <node x="0.0" y="687.0">edu.neu.ccs.cs5004.Driver</node>
+    <node x="0.0" y="546.0">edu.neu.ccs.cs5004.TextReplacer</node>
+    <node x="276.0" y="805.0">edu.neu.ccs.cs5004.WrongExtensionType</node>
+    <node x="703.0" y="687.0">edu.neu.ccs.cs5004.TxtReader</node>
+    <node x="664.0" y="0.0">edu.neu.ccs.cs5004.DriverTest</node>
+    <node x="0.0" y="0.0">edu.neu.ccs.cs5004.ArgParserTest</node>
+    <node x="321.0" y="0.0">edu.neu.ccs.cs5004.ArgParser</node>
+  </nodes>
+  <notes />
+  <edges />
+  <settings layout="Hierarchic Group" zoom="1.0" x="307.5" y="610.5" />
+  <SelectedNodes>
+    <node>edu.neu.ccs.cs5004.TxtReaderTest</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Methods</Category>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

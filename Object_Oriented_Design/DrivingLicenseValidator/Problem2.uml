@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>edu.neu.ccs.cs5004.Problem1.Problem2</OriginalElement>
+  <nodes>
+    <node x="1065.0" y="0.0">edu.neu.ccs.cs5004.Problem1.Problem2.License</node>
+    <node x="349.0" y="454.0">edu.neu.ccs.cs5004.Problem1.Problem2.Application</node>
+    <node x="0.0" y="343.0">edu.neu.ccs.cs5004.Problem1.Problem2.Validator</node>
+    <node x="352.0" y="1536.0">edu.neu.ccs.cs5004.Problem1.Problem2.InvalidDateException</node>
+    <node x="1392.0" y="0.0">edu.neu.ccs.cs5004.Problem1.Problem2.Vehicle</node>
+    <node x="0.0" y="0.0">edu.neu.ccs.cs5004.Problem1.Problem2.IValidator</node>
+    <node x="1173.0" y="1285.0">edu.neu.ccs.cs5004.Problem1.Problem2.Name</node>
+    <node x="1099.0" y="924.0">edu.neu.ccs.cs5004.Problem1.Problem2.VehicleInsurance</node>
+    <node x="0.0" y="1285.0">edu.neu.ccs.cs5004.Problem1.Problem2.VehicleHistory</node>
+    <node x="0.0" y="924.0">edu.neu.ccs.cs5004.Problem1.Problem2.Address</node>
+    <node x="345.0" y="1285.0">edu.neu.ccs.cs5004.Problem1.Problem2.NonmovingViolation</node>
+    <node x="0.0" y="1536.0">edu.neu.ccs.cs5004.Problem1.Problem2.DriverPool</node>
+    <node x="686.0" y="924.0">edu.neu.ccs.cs5004.Problem1.Problem2.Crash</node>
+    <node x="705.0" y="454.0">edu.neu.ccs.cs5004.Problem1.Problem2.Driver</node>
+    <node x="513.25" y="0.0">edu.neu.ccs.cs5004.Problem1.Problem2.AbstractPerson</node>
+    <node x="262.0" y="924.0">edu.neu.ccs.cs5004.Problem1.Problem2.MovingViolation</node>
+    <node x="769.0" y="1285.0">edu.neu.ccs.cs5004.Problem1.Problem2.DriverHistory</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="edu.neu.ccs.cs5004.Problem1.Problem2.Application" target="edu.neu.ccs.cs5004.Problem1.Problem2.AbstractPerson">
+      <point x="0.0" y="-125.0" />
+      <point x="517.0" y="429.0" />
+      <point x="601.5" y="429.0" />
+      <point x="-88.25" y="202.0" />
+    </edge>
+    <edge source="edu.neu.ccs.cs5004.Problem1.Problem2.Driver" target="edu.neu.ccs.cs5004.Problem1.Problem2.AbstractPerson">
+      <point x="0.0" y="-125.0" />
+      <point x="862.5" y="429.0" />
+      <point x="778.0" y="429.0" />
+      <point x="88.25" y="202.0" />
+    </edge>
+    <edge source="edu.neu.ccs.cs5004.Problem1.Problem2.Validator" target="edu.neu.ccs.cs5004.Problem1.Problem2.IValidator">
+      <point x="0.0" y="-268.0" />
+      <point x="0.0" y="146.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.9" x="426.2222222222222" y="239.44444444444446" />
+  <SelectedNodes>
+    <node>edu.neu.ccs.cs5004.Problem1.Problem2.License</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Methods</Category>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

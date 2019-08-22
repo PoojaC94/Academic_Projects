@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>edu.neu.ccs.cs5004.supermarket</OriginalElement>
+  <nodes>
+    <node x="1416.0" y="986.0">edu.neu.ccs.cs5004.supermarket.Supermarket</node>
+    <node x="28.5" y="621.0">edu.neu.ccs.cs5004.supermarket.AbstractHouseholdItem</node>
+    <node x="371.0" y="1400.0">edu.neu.ccs.cs5004.supermarket.AbstractGroceryItemTest</node>
+    <node x="0.0" y="1400.0">edu.neu.ccs.cs5004.supermarket.SupermarketTest</node>
+    <node x="674.0" y="1400.0">edu.neu.ccs.cs5004.supermarket.Customer</node>
+    <node x="0.0" y="841.0">edu.neu.ccs.cs5004.supermarket.ReceiptTest</node>
+    <node x="1425.0" y="841.0">edu.neu.ccs.cs5004.supermarket.IInventory</node>
+    <node x="674.0" y="841.0">edu.neu.ccs.cs5004.supermarket.OnlineOrderTest</node>
+    <node x="272.0" y="767.0">edu.neu.ccs.cs5004.supermarket.Beer</node>
+    <node x="481.0" y="767.0">edu.neu.ccs.cs5004.supermarket.Cheese</node>
+    <node x="371.0" y="841.0">edu.neu.ccs.cs5004.supermarket.AbstractProductTest</node>
+    <node x="1113.0" y="33.0">edu.neu.ccs.cs5004.supermarket.IShoppingCart</node>
+    <node x="854.75" y="189.0">edu.neu.ccs.cs5004.supermarket.OnlineOrder</node>
+    <node x="368.0" y="767.0">edu.neu.ccs.cs5004.supermarket.Salmon</node>
+    <node x="1045.0" y="841.0">edu.neu.ccs.cs5004.supermarket.CustomerTest</node>
+    <node x="145.82870370370367" y="0.0">edu.neu.ccs.cs5004.supermarket.IStockItem</node>
+    <node x="619.0" y="0.0">edu.neu.ccs.cs5004.supermarket.ICheckoutOrder</node>
+    <node x="1385.0" y="1400.0">edu.neu.ccs.cs5004.supermarket.AbstractHouseholdItemTest</node>
+    <node x="146.0" y="767.0">edu.neu.ccs.cs5004.supermarket.Shampoo</node>
+    <node x="284.4259259259259" y="621.0">edu.neu.ccs.cs5004.supermarket.AbstractGroceryItem</node>
+    <node x="1090.0" y="1400.0">edu.neu.ccs.cs5004.supermarket.Receipt</node>
+    <node x="1671.0" y="1400.0">edu.neu.ccs.cs5004.supermarket.ExceedsQuantityException</node>
+    <node x="0.0" y="767.0">edu.neu.ccs.cs5004.supermarket.PaperTowels</node>
+    <node x="134.32870370370367" y="167.0">edu.neu.ccs.cs5004.supermarket.AbstractProduct</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="edu.neu.ccs.cs5004.supermarket.Beer" target="edu.neu.ccs.cs5004.supermarket.AbstractGroceryItem">
+      <point x="0.0" y="-14.5" />
+      <point x="310.0" y="742.0" />
+      <point x="328.0925925925926" y="742.0" />
+      <point x="-87.33333333333331" y="48.0" />
+    </edge>
+    <edge source="edu.neu.ccs.cs5004.supermarket.PaperTowels" target="edu.neu.ccs.cs5004.supermarket.AbstractHouseholdItem">
+      <point x="0.0" y="-14.5" />
+      <point x="63.0" y="742.0" />
+      <point x="79.75" y="742.0" />
+      <point x="-51.25" y="48.0" />
+    </edge>
+    <edge source="edu.neu.ccs.cs5004.supermarket.Salmon" target="edu.neu.ccs.cs5004.supermarket.AbstractGroceryItem">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="48.0" />
+    </edge>
+    <edge source="edu.neu.ccs.cs5004.supermarket.Cheese" target="edu.neu.ccs.cs5004.supermarket.AbstractGroceryItem">
+      <point x="0.0" y="-14.5" />
+      <point x="527.5" y="742.0" />
+      <point x="502.75925925925924" y="742.0" />
+      <point x="87.33333333333331" y="48.0" />
+    </edge>
+    <edge source="edu.neu.ccs.cs5004.supermarket.OnlineOrder" target="edu.neu.ccs.cs5004.supermarket.IShoppingCart">
+      <point x="129.75" y="-213.0" />
+      <point x="1244.0" y="164.0" />
+      <point x="1372.5" y="164.0" />
+      <point x="0.0" y="36.5" />
+    </edge>
+    <edge source="edu.neu.ccs.cs5004.supermarket.AbstractGroceryItem" target="edu.neu.ccs.cs5004.supermarket.AbstractProduct">
+      <point x="-5.6843418860808015E-14" y="-48.0" />
+      <point x="415.42592592592587" y="596.0" />
+      <point x="330.8287037037037" y="596.0" />
+      <point x="65.5" y="202.0" />
+    </edge>
+    <edge source="edu.neu.ccs.cs5004.supermarket.AbstractProduct" target="edu.neu.ccs.cs5004.supermarket.IStockItem">
+      <point x="0.0" y="-202.0" />
+      <point x="0.0" y="58.5" />
+    </edge>
+    <edge source="edu.neu.ccs.cs5004.supermarket.Supermarket" target="edu.neu.ccs.cs5004.supermarket.IInventory">
+      <point x="0.0" y="-125.0" />
+      <point x="0.0" y="47.5" />
+    </edge>
+    <edge source="edu.neu.ccs.cs5004.supermarket.Shampoo" target="edu.neu.ccs.cs5004.supermarket.AbstractHouseholdItem">
+      <point x="0.0" y="-14.5" />
+      <point x="199.0" y="742.0" />
+      <point x="182.25" y="742.0" />
+      <point x="51.25" y="48.0" />
+    </edge>
+    <edge source="edu.neu.ccs.cs5004.supermarket.OnlineOrder" target="edu.neu.ccs.cs5004.supermarket.ICheckoutOrder">
+      <point x="-129.75" y="-213.0" />
+      <point x="984.5" y="164.0" />
+      <point x="856.0" y="164.0" />
+      <point x="0.0" y="69.5" />
+    </edge>
+    <edge source="edu.neu.ccs.cs5004.supermarket.AbstractHouseholdItem" target="edu.neu.ccs.cs5004.supermarket.AbstractProduct">
+      <point x="0.0" y="-48.0" />
+      <point x="131.0" y="596.0" />
+      <point x="199.82870370370367" y="596.0" />
+      <point x="-65.5" y="202.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="1039.0" y="1303.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Methods</Category>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

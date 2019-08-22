@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>edu.neu.ccs.cs5004.Problem1</OriginalElement>
+  <nodes>
+    <node x="478.0" y="0.0">edu.neu.ccs.cs5004.Problem1.MultiMedia</node>
+    <node x="518.0" y="454.0">edu.neu.ccs.cs5004.Problem1.TvSeries</node>
+    <node x="0.0" y="189.0">edu.neu.ccs.cs5004.Problem1.MediaLibrary</node>
+    <node x="0.0" y="550.0">edu.neu.ccs.cs5004.Problem1.AbstractArtists</node>
+    <node x="565.0" y="550.0">edu.neu.ccs.cs5004.Problem1.DuplicateFoundException</node>
+    <node x="349.0" y="550.0">edu.neu.ccs.cs5004.Problem1.ReleaseYear</node>
+    <node x="44.5" y="0.0">edu.neu.ccs.cs5004.Problem1.IMediaLibrary</node>
+    <node x="638.0" y="454.0">edu.neu.ccs.cs5004.Problem1.Movie</node>
+    <node x="47.0" y="762.0">edu.neu.ccs.cs5004.Problem1.Director</node>
+    <node x="164.0" y="762.0">edu.neu.ccs.cs5004.Problem1.Actors</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="edu.neu.ccs.cs5004.Problem1.TvSeries" target="edu.neu.ccs.cs5004.Problem1.MultiMedia">
+      <point x="0.0" y="-14.5" />
+      <point x="568.0" y="429.0" />
+      <point x="551.0" y="429.0" />
+      <point x="-73.0" y="202.0" />
+    </edge>
+    <edge source="edu.neu.ccs.cs5004.Problem1.Movie" target="edu.neu.ccs.cs5004.Problem1.MultiMedia">
+      <point x="0.0" y="-14.5" />
+      <point x="680.0" y="429.0" />
+      <point x="697.0" y="429.0" />
+      <point x="73.0" y="202.0" />
+    </edge>
+    <edge source="edu.neu.ccs.cs5004.Problem1.Actors" target="edu.neu.ccs.cs5004.Problem1.AbstractArtists">
+      <point x="0.0" y="-14.5" />
+      <point x="208.5" y="737.0" />
+      <point x="228.0" y="737.0" />
+      <point x="76.0" y="81.0" />
+    </edge>
+    <edge source="edu.neu.ccs.cs5004.Problem1.Director" target="edu.neu.ccs.cs5004.Problem1.AbstractArtists">
+      <point x="0.0" y="-14.5" />
+      <point x="95.5" y="737.0" />
+      <point x="76.0" y="737.0" />
+      <point x="-76.0" y="81.0" />
+    </edge>
+    <edge source="edu.neu.ccs.cs5004.Problem1.MediaLibrary" target="edu.neu.ccs.cs5004.Problem1.IMediaLibrary">
+      <point x="0.0" y="-158.0" />
+      <point x="0.0" y="69.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="189.0" y="168.0" />
+  <SelectedNodes>
+    <node>edu.neu.ccs.cs5004.Problem1.Movie</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

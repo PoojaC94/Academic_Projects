@@ -1,0 +1,28 @@
+[[first_name]] [[last_name]]
+[[address]], [[city]],
+[[county]], [[state]], [[zip]]
+
+Dear [[first_name]] [[last_name]],
+
+As you may have heard or read, last month we learned that our databases were compromised. Late last week, as part of our ongoing investigation, we learned that the taken information includes names, mailing addresses, phone numbers or email addresses.
+
+I am writing to make you aware that the following information may have been stolen from our systems:
+[[email]]
+[[state]]
+[[zip]]
+
+I am truly sorry this incident occurred. Rest assured, we are working to find out why this breach occurred and are implementing steps to ensure such a data breach doesn't happen again.
+
+Because we value you as a customer, and because your trust is important to us, our company is offering you one
+year of free credit monitoring through Experian’s ProtectMyID product, which includes identity theft insurance
+where available. You will receive more information about this offer via regular mail.
+
+You can find additional information and FAQs about this incident at our website. If you have further questions,
+you may call us at 866-852-8680.
+
+Thank you for your patience and your loyalty. We hope to continue to earn your business.
+
+Sincerely,
+
+
+Insurance Company CEO
