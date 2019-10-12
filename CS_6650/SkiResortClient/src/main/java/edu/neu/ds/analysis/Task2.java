@@ -82,7 +82,7 @@ public class Task2 implements Runnable {
 
                 long start = System.currentTimeMillis();
                 long end = 0;
-                int responseCode = 600;
+                int responseCode = 500;
                 try {
                     response = apiInstance.writeNewLiftRideWithHttpInfo(ride, resortId, seasonId, dayId, randomSkierId);
                     responseCode = response.getStatusCode();
