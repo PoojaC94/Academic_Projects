@@ -66,6 +66,7 @@ public class Client2 {
         System.out.println("Waiting for phase2 to complete 10%");
         task2Latch.await();
         System.out.println(System.currentTimeMillis());
+
         // Phase 3
 
         System.out.println("Starting phase3");
@@ -73,7 +74,7 @@ public class Client2 {
         ExecutorService executorService3 = Executors.newFixedThreadPool(totalThreadsForPhase3);
         int incrementalValueForPhase3 = skiers/totalThreadsForPhase3;
         int skierStart3 = 1;
-        int skierEnd3 = skierStart3 + incrementalValueForPhase3 - 1;;
+        int skierEnd3 = skierStart3 + incrementalValueForPhase3 - 1;
         AtomicInteger requestsCompleted3 = new AtomicInteger();
         AtomicInteger requestsErrored3 = new AtomicInteger();
         CountDownLatch task3Latch = new CountDownLatch(totalThreadsForPhase3);

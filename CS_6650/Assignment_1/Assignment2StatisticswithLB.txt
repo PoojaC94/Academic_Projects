@@ -1,0 +1,547 @@
+SuccessfulRequests1 = 19968
+SuccessfulRequests2 = 159744
+SuccessfulRequests3 = 39936
+ErroredRequests1 = 0
+ErroredRequests2 = 0
+ErroredRequests3 = 0
+Successful Requests = 219648
+Errored Requests = 0
+Total threads = 256
+Total requests = 219648
+Wall time = 142390
+Throughput = 1
+Max Response time = 1110.0
+Min Response time = 66.0
+Mean Response time = 98.26662204981514
+P99 179.0
+OTHER STATS INCLUDING MEDIAN RESPONSE TIME - 
+DescriptiveStatistics:
+n: 219648
+min: 66.0
+max: 1110.0
+mean: 98.26662204981514
+std dev: 25.52480182339909
+median: 94.0
+skewness: 9.170773388370224
+kurtosis: 228.942376198484
+
+//    private static final String HOST_NAME = "skiresort.cprb18ythfni.us-east-1.rds.amazonaws.com";
+//    private static final String PORT = "3306";
+//    private static final String DATABASE = "skiresort";
+//    private static final String USERNAME = "ds2019";
+//    private static final String PASSWORD = "skier2019";
+//    private static final String HOST_NAME = "localhost";
+//    private static final String PORT = "3306";
+//    private static final String DATABASE = "mysql";
+//    private static final String USERNAME = "root";
+//    private static final String PASSWORD = "pooja123";
+
+==========REAL TESTS!===========
+
+32 threads single server testing:
+SuccessfulRequests1 = 40000
+SuccessfulRequests2 = 320000
+SuccessfulRequests3 = 80000
+ErroredRequests1 = 0
+ErroredRequests2 = 0
+ErroredRequests3 = 0
+Successful Requests = 440000
+Errored Requests = 0
+Total threads = 32
+Total requests = 440000
+Wall time = 1998452
+Throughput = 0
+Max Response time = 1938.0
+Min Response time = 65.0
+Mean Response time = 81.62938181818629
+P99 153.0
+OTHER STATS INCLUDING MEDIAN RESPONSE TIME - 
+DescriptiveStatistics:
+n: 440000
+min: 65.0
+max: 1938.0
+mean: 81.62938181818629
+std dev: 23.147763409081232
+median: 77.0
+skewness: 14.795043165363253
+kurtosis: 512.8730328811586
+
+64 threads single server testing:
+SuccessfulRequests1 = 40000
+SuccessfulRequests2 = 319488
+SuccessfulRequests3 = 80000
+ErroredRequests1 = 0
+ErroredRequests2 = 0
+ErroredRequests3 = 0
+Successful Requests = 439488
+Errored Requests = 0
+Total threads = 64
+Total requests = 439488
+Wall time = 1155986
+Throughput = 0
+Max Response time = 729.0
+Min Response time = 65.0
+Mean Response time = 105.64174903523624
+P99 297.0
+OTHER STATS INCLUDING MEDIAN RESPONSE TIME - 
+DescriptiveStatistics:
+n: 439488
+min: 65.0
+max: 729.0
+mean: 105.64174903523624
+std dev: 45.79509084716032
+median: 85.0
+skewness: 2.5110847217841497
+kurtosis: 10.38904681146326
+
+128 threads single server testing
+SuccessfulRequests1 = 40000
+SuccessfulRequests2 = 319480
+SuccessfulRequests3 = 80000
+ErroredRequests1 = 0
+ErroredRequests2 = 8
+ErroredRequests3 = 0
+Successful Requests = 439480
+Errored Requests = 8
+Total threads = 128
+Total requests = 439488
+Wall time = 865817
+Throughput = 0
+Max Response time = 2193.0
+Min Response time = 65.0
+Mean Response time = 185.6642502185019
+P99 723.0
+OTHER STATS INCLUDING MEDIAN RESPONSE TIME - 
+DescriptiveStatistics:
+n: 439488
+min: 65.0
+max: 2193.0
+mean: 185.6642502185019
+std dev: 145.7260968886282
+median: 121.0
+skewness: 2.389629617184679
+kurtosis: 9.30330414477011
+
+256 threads single server
+SuccessfulRequests1 = 39936
+SuccessfulRequests2 = 319488
+SuccessfulRequests3 = 79872
+ErroredRequests1 = 0
+ErroredRequests2 = 0
+ErroredRequests3 = 0
+Successful Requests = 439296
+Errored Requests = 0
+Total threads = 256
+Total requests = 439296
+Wall time = 485758
+Throughput = 0
+Max Response time = 2295.0
+Min Response time = 65.0
+Mean Response time = 201.04857089518245
+P99 762.0
+OTHER STATS INCLUDING MEDIAN RESPONSE TIME - 
+DescriptiveStatistics:
+n: 439296
+min: 65.0
+max: 2295.0
+mean: 201.04857089518245
+std dev: 150.88794943907652
+median: 155.0
+skewness: 2.827343904126889
+kurtosis: 14.096035782050285
+
+
+
+
+
+
+
+
+
+
+
+
+==== STATISTICS USING AWS ======
+
+32 threads:
+
+SuccessfulRequests1 = 40000
+SuccessfulRequests2 = 320000
+SuccessfulRequests3 = 80000
+ErroredRequests1 = 0
+ErroredRequests2 = 0
+ErroredRequests3 = 0
+Successful Requests = 440000
+Errored Requests = 0
+Total threads = 32
+Total requests = 440000
+Wall time = 577120
+Throughput = 0
+Max Response time = 662.0
+Min Response time = 10.0
+Mean Response time = 27.458524999989507
+P99 78.0
+OTHER STATS INCLUDING MEDIAN RESPONSE TIME - 
+DescriptiveStatistics:
+n: 440000
+min: 10.0
+max: 662.0
+mean: 27.458524999989507
+std dev: 16.52097248852029
+median: 23.0
+skewness: 6.461420252389822
+kurtosis: 97.10059055922757
+
+64 threads:
+
+SuccessfulRequests1 = 40000
+SuccessfulRequests2 = 319488
+SuccessfulRequests3 = 80000
+ErroredRequests1 = 0
+ErroredRequests2 = 0
+ErroredRequests3 = 0
+Successful Requests = 439488
+Errored Requests = 0
+Total threads = 64
+Total requests = 439488
+Wall time = 341978
+Throughput = 1
+Max Response time = 392.0
+Min Response time = 10.0
+Mean Response time = 34.789994266057825
+P99 128.0
+OTHER STATS INCLUDING MEDIAN RESPONSE TIME - 
+DescriptiveStatistics:
+n: 439488
+min: 10.0
+max: 392.0
+mean: 34.789994266057825
+std dev: 23.09183636748253
+median: 28.0
+skewness: 3.6490222812288162
+kurtosis: 23.70064786499913
+
+128 threads:
+
+
+SuccessfulRequests1 = 40000
+SuccessfulRequests2 = 319488
+SuccessfulRequests3 = 80000
+ErroredRequests1 = 0
+ErroredRequests2 = 0
+ErroredRequests3 = 0
+Successful Requests = 439488
+Errored Requests = 0
+Total threads = 128
+Total requests = 439488
+Wall time = 291221
+Throughput = 1
+Max Response time = 928.0
+Min Response time = 10.0
+Mean Response time = 64.40735810760975
+P99 197.0
+OTHER STATS INCLUDING MEDIAN RESPONSE TIME - 
+DescriptiveStatistics:
+n: 439488
+min: 10.0
+max: 928.0
+mean: 64.40735810760975
+std dev: 39.16028948986235
+median: 67.0
+skewness: 3.672147085952827
+kurtosis: 48.255354599988905
+
+256 threads:
+
+SuccessfulRequests1 = 39936
+SuccessfulRequests2 = 319488
+SuccessfulRequests3 = 79872
+ErroredRequests1 = 0
+ErroredRequests2 = 0
+ErroredRequests3 = 0
+Successful Requests = 439296
+Errored Requests = 0
+Total threads = 256
+Total requests = 439296
+Wall time = 222499
+Throughput = 1
+Max Response time = 9489.0
+Min Response time = 10.0
+Mean Response time = 100.86836665942192
+P99 1627.0299999999697
+OTHER STATS INCLUDING MEDIAN RESPONSE TIME - 
+DescriptiveStatistics:
+n: 439296
+min: 10.0
+max: 9489.0
+mean: 100.86836665942192
+std dev: 302.62285295292304
+median: 35.0
+skewness: 7.817149910121603
+kurtosis: 84.34092522887326
+
+
+
+
+minidle = 3, maxidle = 5 maxconnections = 10 256 thread
+
+SuccessfulRequests1 = 39936
+SuccessfulRequests2 = 319488
+SuccessfulRequests3 = 79872
+ErroredRequests1 = 0
+ErroredRequests2 = 0
+ErroredRequests3 = 0
+Successful Requests = 439296
+Errored Requests = 0
+Total threads = 256
+Total requests = 439296
+Wall time = 183047
+Throughput = 2
+Max Response time = 948.0
+Min Response time = 10.0
+Mean Response time = 76.36711920892238
+P99 222.0
+OTHER STATS INCLUDING MEDIAN RESPONSE TIME - 
+DescriptiveStatistics:
+n: 439296
+min: 10.0
+max: 948.0
+mean: 76.36711920892238
+std dev: 48.1145421382986
+median: 72.0
+skewness: 2.9503977218364525
+kurtosis: 26.33654139304979
+
+
+
+
+
+==== DO IN GRAPH LOAD BALANCER====
+
+32 THREADS:
+SuccessfulRequests1 = 40000
+SuccessfulRequests2 = 320000
+SuccessfulRequests3 = 80000
+ErroredRequests1 = 0
+ErroredRequests2 = 0
+ErroredRequests3 = 0
+Successful Requests = 440000
+Errored Requests = 0
+Total threads = 32
+Total requests = 440000
+Wall time = 506101
+Throughput = 0 (869.39 req / second)
+Max Response time = 742.0
+Min Response time = 10.0
+Mean Response time = 22.231634090915037
+P99 50.0
+OTHER STATS INCLUDING MEDIAN RESPONSE TIME - 
+DescriptiveStatistics:
+n: 440000
+min: 10.0
+max: 742.0
+mean: 22.231634090915037
+std dev: 10.041385036043485
+median: 20.0
+skewness: 14.889221422958252
+kurtosis: 622.3523141267597
+
+
+64 THREADS:
+SuccessfulRequests1 = 40000
+SuccessfulRequests2 = 319488
+SuccessfulRequests3 = 80000
+ErroredRequests1 = 0
+ErroredRequests2 = 0
+ErroredRequests3 = 0
+Successful Requests = 439488
+Errored Requests = 0
+Total threads = 64
+Total requests = 439488
+Wall time = 340141
+Throughput = 1 (1293.581 req / sec)
+Max Response time = 2433.0
+Min Response time = 10.0
+Mean Response time = 34.76207086428187
+P99 247.0
+OTHER STATS INCLUDING MEDIAN RESPONSE TIME - 
+DescriptiveStatistics:
+n: 439488
+min: 10.0
+max: 2433.0
+mean: 34.76207086428187
+std dev: 53.17595788302963
+median: 23.0
+skewness: 13.019209903019963
+kurtosis: 367.2903762286405
+
+128 THREADS:
+SuccessfulRequests1 = 40000
+SuccessfulRequests2 = 319488
+SuccessfulRequests3 = 80000
+ErroredRequests1 = 0
+ErroredRequests2 = 0
+ErroredRequests3 = 0
+Successful Requests = 439488
+Errored Requests = 0
+Total threads = 128
+Total requests = 439488
+Wall time = 205015
+Throughput = 2 (2145.242 req/ sec)
+Max Response time = 569.0
+Min Response time = 10.0
+Mean Response time = 42.15677333625824
+P99 125.0
+OTHER STATS INCLUDING MEDIAN RESPONSE TIME - 
+DescriptiveStatistics:
+n: 439488
+min: 10.0
+max: 569.0
+mean: 42.15677333625824
+std dev: 26.535481989078978
+median: 37.0
+skewness: 3.871682023085085
+kurtosis: 41.696089914521906
+
+256 THREADS:
+SuccessfulRequests1 = 39936
+SuccessfulRequests2 = 319488
+SuccessfulRequests3 = 79872
+ErroredRequests1 = 0
+ErroredRequests2 = 0
+ErroredRequests3 = 0
+Successful Requests = 439296
+Errored Requests = 0
+Total threads = 256
+Total requests = 439296
+Wall time = 190232 (2312.965 req/ sec)
+Throughput = 2
+Max Response time = 2274.0
+Min Response time = 10.0
+Mean Response time = 81.48726826555811
+P99 245.0
+OTHER STATS INCLUDING MEDIAN RESPONSE TIME - 
+DescriptiveStatistics:
+n: 439296
+min: 10.0
+max: 2274.0
+mean: 81.48726826555811
+std dev: 70.01024860694919
+median: 75.0
+skewness: 11.911645582505288
+kurtosis: 314.0194995222436
+
+== SINGLE SERVER TEST IP 54.245.207.71 ===
+32 THREADS:
+SuccessfulRequests1 = 40000
+SuccessfulRequests2 = 320000
+SuccessfulRequests3 = 80000
+ErroredRequests1 = 0
+ErroredRequests2 = 0
+ErroredRequests3 = 0
+Successful Requests = 440000
+Errored Requests = 0
+Total threads = 32
+Total requests = 440000
+Wall time = 561148
+Throughput = 0 (784.1068 req / sec)
+Max Response time = 491.0
+Min Response time = 10.0
+Mean Response time = 26.432593181805547
+P99 52.0
+OTHER STATS INCLUDING MEDIAN RESPONSE TIME - 
+DescriptiveStatistics:
+n: 440000
+min: 10.0
+max: 491.0
+mean: 26.432593181805547
+std dev: 10.915160632831377
+median: 26.0
+skewness: 8.819981270166696
+kurtosis: 199.45704941921258
+
+64 THREADS:
+SuccessfulRequests1 = 40000
+SuccessfulRequests2 = 319488
+SuccessfulRequests3 = 80000
+ErroredRequests1 = 0
+ErroredRequests2 = 0
+ErroredRequests3 = 0
+Successful Requests = 439488
+Errored Requests = 0
+Total threads = 64
+Total requests = 439488
+Wall time = 433524
+Throughput = 1 (1014.938 req /sec)
+Max Response time = 6968.0
+Min Response time = 10.0
+Mean Response time = 47.253292467591486
+P99 101.0
+OTHER STATS INCLUDING MEDIAN RESPONSE TIME - 
+DescriptiveStatistics:
+n: 439488
+min: 10.0
+max: 6968.0
+mean: 47.253292467591486
+std dev: 24.33840438638006
+median: 53.0
+skewness: 53.70344296757774
+kurtosis: 14916.2294820959
+
+128 THREADS:
+
+
+SuccessfulRequests1 = 40000
+SuccessfulRequests2 = 319488
+SuccessfulRequests3 = 80000
+ErroredRequests1 = 0
+ErroredRequests2 = 0
+ErroredRequests3 = 0
+Successful Requests = 439488
+Errored Requests = 0
+Total threads = 128
+Total requests = 439488
+Wall time = 754549
+Throughput = 0
+Max Response time = 6541.0
+Min Response time = 10.0
+Mean Response time = 184.57489169222762
+P99 1801.0
+OTHER STATS INCLUDING MEDIAN RESPONSE TIME - 
+DescriptiveStatistics:
+n: 439488
+min: 10.0
+max: 6541.0
+mean: 184.57489169222762
+std dev: 341.15494614455474
+median: 81.0
+skewness: 5.003797870827499
+kurtosis: 35.49347515377796
+
+SuccessfulRequests1 = 39936
+SuccessfulRequests2 = 319488
+SuccessfulRequests3 = 79872
+ErroredRequests1 = 0
+ErroredRequests2 = 0
+ErroredRequests3 = 0
+Successful Requests = 439296
+Errored Requests = 0
+Total threads = 256
+Total requests = 439296
+Wall time = 369652
+Throughput = 1
+Max Response time = 6581.0
+Min Response time = 10.0
+Mean Response time = 131.81640625
+P99 1351.0
+OTHER STATS INCLUDING MEDIAN RESPONSE TIME - 
+DescriptiveStatistics:
+n: 439296
+min: 10.0
+max: 6581.0
+mean: 131.81640625
+std dev: 254.60767307567863
+median: 56.0
+skewness: 6.226528978145001
+kurtosis: 59.08285740593384
+== FINAL SINGLE SERVER TESTS FOR GRAPH == 

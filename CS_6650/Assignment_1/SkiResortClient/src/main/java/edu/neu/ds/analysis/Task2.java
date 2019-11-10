@@ -16,9 +16,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Task2 implements Runnable {
 
-    private static final int resortId = 12345;
+    private static final int resortId = 7;
     private static final String seasonId = "2019";
-    private static final String dayId = "2019";
+    private static final String dayId = "2";
 
     private int skierIdStart;
     private int skierIdEnd;
@@ -55,8 +55,10 @@ public class Task2 implements Runnable {
         this.threadName = threadName;
         apiInstance = new SkiersApi();
         ApiClient client = apiInstance.getApiClient();
+        //client.setBasePath("http://SkierResortLB-9dda70f60e2e3089.elb.us-west-2.amazonaws.com:8080/SkiResort_war/skiers");
         //client.setBasePath("http://localhost:8080/SkiResort/skiers"); // Local
-        client.setBasePath("http://54.245.185.142:8080/SkiResort_war/skiers"); // Remote
+        client.setBasePath("http://SkierResortLB-9dda70f60e2e3089.elb.us-west-2.amazonaws.com:8080/SkiResort_war/skiers");
+        //client.setBasePath("http://34.213.99.58:8080/SkiResort_war/skiers"); // Remote
     }
 
     public void run() {
@@ -72,6 +74,7 @@ public class Task2 implements Runnable {
 
                 int randomTime = random.current().ints(1, startTime, endTime+1)
                         .findFirst().getAsInt();
+                String randomDayId = String.valueOf(random.current().ints(1, 1, 31).findFirst().getAsInt());
 
                 LiftRide ride = new LiftRide();
                 ride.setLiftID(randomLiftId);
@@ -82,9 +85,11 @@ public class Task2 implements Runnable {
 
                 long start = System.currentTimeMillis();
                 long end = 0;
+
                 int responseCode = 500;
+
                 try {
-                    response = apiInstance.writeNewLiftRideWithHttpInfo(ride, resortId, seasonId, dayId, randomSkierId);
+                    response = apiInstance.writeNewLiftRideWithHttpInfo(ride, resortId, seasonId, randomDayId, randomSkierId);
                     responseCode = response.getStatusCode();
                     end = System.currentTimeMillis();
                     requestsCompleted.getAndIncrement();
@@ -104,7 +109,43 @@ public class Task2 implements Runnable {
                     String threadName = Thread.currentThread().getName();
                     Data data = new Data(start, end, end - start,
                             "Request.POST", responseCode, taskName, threadName, j);
+
                     localDataList.add(data);
+
+                }
+
+                long startTimeForGetLift = System.currentTimeMillis();
+                long getLiftRideEnd = 0;
+                int getLiftRideCode = 500;
+                if (this.taskName.equals("Task3")) {
+                    try {
+
+                        ApiResponse<Integer> getNewLiftRideResponse = apiInstance.getSkierDayVerticalWithHttpInfo(resortId, seasonId, randomDayId, randomSkierId);
+                        getLiftRideCode = getNewLiftRideResponse.getStatusCode();
+                        getLiftRideEnd = System.currentTimeMillis();
+                        requestsCompleted.getAndIncrement();
+
+                    } catch (ApiException e) {
+
+                        requestsErrored.getAndIncrement();
+                        getLiftRideEnd = System.currentTimeMillis();
+                        System.out.println("API Error");
+                        getLiftRideCode = e.getCode();
+                        e.printStackTrace();
+
+                    } catch (Exception e) {
+                        requestsErrored.getAndIncrement();
+                        System.out.println("Unknown error");
+                        getLiftRideEnd = System.currentTimeMillis();
+                        e.printStackTrace();
+                    } finally {
+                        String threadName = Thread.currentThread().getName();
+                        Data data = new Data(startTimeForGetLift, getLiftRideEnd, getLiftRideEnd - startTimeForGetLift,
+                                "Request.GET", getLiftRideCode, taskName, threadName, j);
+
+                        localDataList.add(data);
+
+                    }
                 }
             }
         }

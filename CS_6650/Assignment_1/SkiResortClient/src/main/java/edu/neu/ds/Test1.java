@@ -9,15 +9,18 @@ import io.swagger.client.model.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Test1 {
 
     public static void postSkiers(SkiersApi apiInstance) {
         try {
             LiftRide ride = new LiftRide();
-            ride.setLiftID(5);
+            ride.setLiftID(15);
             ride.setTime(10);
-            ApiResponse response = apiInstance.writeNewLiftRideWithHttpInfo(ride, 12345, "2019", "28", 100);
+
+            //ApiResponse response = apiInstance.writeNewLiftRideWithHttpInfo(ride, 5, "2019", "28", 100);
+            ApiResponse response = apiInstance.writeNewLiftRideWithHttpInfo(ride, 7, "2020", "24", 100);
             System.out.println("code = " + response.getStatusCode());
             System.out.println("Success");
         } catch (ApiException e) {
@@ -31,8 +34,9 @@ public class Test1 {
 
     public static void getSkiersDay(SkiersApi apiInstance) {
         try {
-            int value = apiInstance.getSkierDayVertical(12345, "2019", "28", 100);
-            System.out.println("Value from GET = " + value);
+            ApiResponse<Integer> apiResponse = apiInstance.getSkierDayVerticalWithHttpInfo(7, "2020", "24", 100);
+
+            System.out.println("Value from GET = " + apiResponse.getData());
             System.out.println("Success");
         } catch (ApiException e) {
             System.out.println("Error");
@@ -44,9 +48,13 @@ public class Test1 {
 
     public static void getSkiersTotal(SkiersApi apiInstance) {
         try {
-
-            ApiResponse vertical = apiInstance.getSkierResortTotalsWithHttpInfo(12345, new ArrayList<String>(), new ArrayList<>());
-            System.out.println("Value from GET = " + vertical.getStatusCode());
+            List<String> list = new ArrayList<>();
+            list.add("7");
+            List<String> seasons = new ArrayList();
+            seasons.add("2020");
+            ApiResponse<SkierVertical> vertical = apiInstance.getSkierResortTotalsWithHttpInfo(100, list, seasons);
+            System.out.println("Value from GET1 = " + vertical.getStatusCode());
+            System.out.println("Data: " + vertical.getData());
             System.out.println("Success");
         } catch (ApiException e) {
             System.out.println("Error");
@@ -58,11 +66,17 @@ public class Test1 {
         }
     }
 
+
     public static void postResorts(ResortsApi apiInstance) {
         try {
             Body body = new Body();
             body.setYear("2020");
-            apiInstance.addSeason(body, 25);
+            Body body1 = new Body();
+            body1.setYear("2019");
+            //apiInstance.addSeason(body, 2);
+            apiInstance.addSeason(body1, 4);
+            //apiInstance.addSeason(body1, 4);
+
             System.out.println("Success");
         } catch (ApiException e) {
             System.out.println("Error");
@@ -72,9 +86,11 @@ public class Test1 {
         }
     }
 
+
+
     public static void getResortSeasons(ResortsApi apiInstance) {
         try {
-            SeasonsList seasonsList = apiInstance.getResortSeasons(25);
+            SeasonsList seasonsList = apiInstance.getResortSeasons(7);
             System.out.println("Value from GET = " + seasonsList.getSeasons());
             System.out.println("Success");
         } catch (ApiException e) {
@@ -88,7 +104,7 @@ public class Test1 {
     public static void getAllResorts(ResortsApi apiInstance) {
         try {
             ResortsList resortsList = apiInstance.getResorts();
-            System.out.println("Value from GET = " + resortsList.getResorts());
+            System.out.println("Value from GET Resorts = " + resortsList.getResorts());
             System.out.println("Success");
         } catch (ApiException e) {
             System.out.println("Error");
@@ -102,16 +118,24 @@ public class Test1 {
     public static void main(String[] args) {
         SkiersApi apiInstance = new SkiersApi();
         ApiClient client = apiInstance.getApiClient();
-        client.setBasePath("http://localhost:8080/SkiResort/skiers");
-        //client.setBasePath("http://54.245.185.142:8080/SkiResort_war/skiers");
-
+        //client.setBasePath("http://localhost:8080/SkiResort/skiers");
+        //client.setBasePath("http://34.216.114.233:8080/SkiResort_war/skiers");
+        //client.setBasePath("http://54.202.88.174:8080/SkiResort_war/skiers");
+        //client.setBasePath("http://34.213.99.58:8080/SkiResort_war/skiers");
+        client.setBasePath("http://SkierResortLB-9dda70f60e2e3089.elb.us-west-2.amazonaws.com:8080/SkiResort_war/skiers");
+        //client.setBasePath("http://54.211.201.179:8080/SkiResort_war/skiers");
+        //client.setBasePath("http://3.87.198.22:8080/SkiResort_war/skiers");
+        //client.setBasePath("http://54.86.81.176:8080/SkiResort_war/skiers");
+        //client.setBasePath("http://SkiResortLB-21eeac47a4c0ece4.elb.us-east-1.amazonaws.com:8080/SkiResort_war/skiers");
         postSkiers(apiInstance);
-        //getSkiersDay(apiInstance);
+        getSkiersDay(apiInstance);
         //getSkiersTotal(apiInstance);
 
-        ResortsApi apiInstance1 = new ResortsApi();
-        ApiClient client1 = apiInstance1.getApiClient();
-        client1.setBasePath("http://localhost:8080/SkiResort/resorts");
+//        ResortsApi apiInstance1 = new ResortsApi();
+//        ApiClient client1 = apiInstance1.getApiClient();
+//        client1.setBasePath("http://localhost:8080/SkiResort/resorts");
+//        client1.setBasePath("http://54.245.185.142:8080/SkiResort_war/skiers");
+
 
         //postResorts(apiInstance1);
         //getResortSeasons(apiInstance1);

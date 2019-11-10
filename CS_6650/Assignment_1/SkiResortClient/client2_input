@@ -1,4 +1,1 @@
-maxThreads=32,skiers=20000,skiLifts=40,numRuns=20
-maxThreads=64,skiers=20000,skiLifts=40,numRuns=20
 maxThreads=128,skiers=20000,skiLifts=40,numRuns=20
-maxThreads=256,skiers=20000,skiLifts=40,numRuns=20
