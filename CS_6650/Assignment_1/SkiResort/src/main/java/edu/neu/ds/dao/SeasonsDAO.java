@@ -1,33 +1,33 @@
 package edu.neu.ds.dao;
 
-import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import edu.neu.ds.controller.ResortServlet;
 import edu.neu.ds.model.Season;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import javax.sql.DataSource;
+import java.sql.*;
 import java.util.*;
 
 public class SeasonsDAO {
     private static final Logger LOGGER = LogManager.getLogger(ResortServlet.class.getName());
+    private static DataSource pool;
 
-    public boolean insertSeason(int resortId, String seasonId) throws SQLException {
+    public SeasonsDAO(DataSource pool) {
+        this.pool = pool;
+    }
+
+    public boolean insertSeason(int resortId, String seasonId) throws Exception {
         String sql = "INSERT INTO Seasons (resort_id, season_id) VALUES (?, ?)";
 
-        try (Connection jdbcConnection = DBCPDataSource.getConnection();
+        try (Connection jdbcConnection = HikariCPDataSource.getConnection();//getConnection();
              PreparedStatement statement = jdbcConnection.prepareStatement(sql)) {
 
             statement.setInt(1, resortId);
             statement.setString(2, seasonId);
 
             return statement.executeUpdate() > 0;
-        } catch(MySQLIntegrityConstraintViolationException e) {
+        } catch(SQLIntegrityConstraintViolationException e) {
             LOGGER.info("duplicate exception found and ignored");
             return true;
         } catch (SQLException e) {
@@ -41,7 +41,7 @@ public class SeasonsDAO {
         List<String> seasonList = new ArrayList();
 
         String sql = "SELECT * FROM Seasons WHERE resort_id = ?";
-        try (Connection jdbcConnection = DBCPDataSource.getConnection();
+        try (Connection jdbcConnection = HikariCPDataSource.getConnection();//getConnection();
              PreparedStatement statement = jdbcConnection.prepareStatement(sql)) {
             statement.setInt(1, resortId);
             ResultSet resultSet = statement.executeQuery();

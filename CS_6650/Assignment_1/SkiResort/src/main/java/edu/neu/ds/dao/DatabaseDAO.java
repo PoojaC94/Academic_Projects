@@ -5,6 +5,7 @@ import edu.neu.ds.model.EndPointStats;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,13 +19,18 @@ public class DatabaseDAO {
     private static final String getOp = "GET";
     private static final String postURL = "/skiers/{resortID}/seasons/{seasonID}/days/{dayID}/skiers/{skierID}";
     private static final String getVerticalURL = "/skiers/{resortID}/seasons/{seasonID}/days/{dayID}/skiers/{skierID}";
+    private static DataSource pool;
 
-    static {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+//    static {
+//        try {
+//            Class.forName("com.mysql.jdbc.Driver");
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+    public DatabaseDAO(DataSource pool) {
+        this.pool = pool;
     }
 
     public List<EndPointStats> getStats() throws SQLException {
@@ -39,7 +45,7 @@ public class DatabaseDAO {
 
     private void insertStats(String sql, String url, String operation, List<EndPointStats> result) throws SQLException {
 
-        try (Connection jdbcConnection = DBCPDataSource.getConnection();
+        try (Connection jdbcConnection = HikariCPDataSource.getConnection();//getConnection();
              PreparedStatement statement = jdbcConnection.prepareStatement(sql)) {
             statement.setString(1, url);
             statement.setString(2, operation);

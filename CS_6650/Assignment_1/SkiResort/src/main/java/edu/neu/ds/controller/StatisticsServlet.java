@@ -1,6 +1,7 @@
 package edu.neu.ds.controller;
 
 import com.google.gson.Gson;
+import edu.neu.ds.dao.ConnectionPoolContextListener;
 import edu.neu.ds.dao.DatabaseDAO;
 import edu.neu.ds.dto.response.StatsResponse;
 import edu.neu.ds.model.EndPointStats;
@@ -12,17 +13,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(name = "StatisticsServlet")
+//@WebServlet(name = "StatisticsServlet")
 public class StatisticsServlet extends HttpServlet {
     private static final Logger LOGGER = LogManager.getLogger(StatisticsServlet.class.getName());
     private DatabaseDAO databaseDAO;
+    private DataSource pool;
 
     public void init() {
-        databaseDAO = new DatabaseDAO();
+        DataSource pool = (DataSource) getServletContext().getAttribute("my-pool");
+        databaseDAO = new DatabaseDAO(pool);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -33,6 +37,9 @@ public class StatisticsServlet extends HttpServlet {
         LOGGER.info("Start edu.neu.ds.model.StatisticsServlet Get request");
         response.setContentType("application/json");
         try {
+
+            //DataSource pool = (DataSource) request.getServletContext().getAttribute("my-pool");
+            //DataSource pool = ConnectionPoolContextListener.createConnectionPool();
             List<EndPointStats> endPointStats = databaseDAO.getStats();
             if (endPointStats.isEmpty()) {
                 response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);

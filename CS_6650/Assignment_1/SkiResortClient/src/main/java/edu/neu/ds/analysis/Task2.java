@@ -16,7 +16,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Task2 implements Runnable {
 
-    private static final int resortId = 7;
+    private static final int resortId = 2;
     private static final String seasonId = "2019";
     private static final String dayId = "2";
 
@@ -57,7 +57,7 @@ public class Task2 implements Runnable {
         ApiClient client = apiInstance.getApiClient();
         //client.setBasePath("http://SkierResortLB-9dda70f60e2e3089.elb.us-west-2.amazonaws.com:8080/SkiResort_war/skiers");
         //client.setBasePath("http://localhost:8080/SkiResort/skiers"); // Local
-        client.setBasePath("http://SkierResortLB-9dda70f60e2e3089.elb.us-west-2.amazonaws.com:8080/SkiResort_war/skiers");
+        client.setBasePath("https://20191119t082523-dot-meta-origin-258803.appspot.com/skiers");
         //client.setBasePath("http://34.213.99.58:8080/SkiResort_war/skiers"); // Remote
     }
 

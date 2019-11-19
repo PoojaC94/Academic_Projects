@@ -1,39 +1,39 @@
 package edu.neu.ds.dao;
 
-import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import edu.neu.ds.controller.ResortServlet;
 import edu.neu.ds.model.Resort;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import javax.sql.DataSource;
+import java.sql.*;
 import java.util.*;
 
 public class ResortsDAO {
     private static final Logger LOGGER = LogManager.getLogger(ResortServlet.class.getName());
+    private static DataSource pool;
 
-    static {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+//    static {
+//        try {
+//            Class.forName("com.mysql.jdbc.Driver");
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+    public ResortsDAO(DataSource pool) {
+        this.pool = pool;
     }
 
-    public boolean insertResort(String resortName) throws SQLException {
+    public boolean insertResort(String resortName, DataSource pool) throws Exception {
         String sql = "INSERT INTO Resorts (resortName) VALUES (?)";
 
-        try (Connection jdbcConnection = DBCPDataSource.getConnection();
+        try (Connection jdbcConnection = HikariCPDataSource.getConnection();//getConnection();
              PreparedStatement statement = jdbcConnection.prepareStatement(sql)) {
             statement.setString(1, resortName);
 
             return statement.executeUpdate() > 0;
-        } catch(MySQLIntegrityConstraintViolationException e) {
+        } catch(SQLIntegrityConstraintViolationException e) {
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -42,12 +42,12 @@ public class ResortsDAO {
         return false;
     }
 
-    public List<Resort> listAllResorts() throws SQLException {
+    public List<Resort> listAllResorts(DataSource pool) throws Exception {
         List<Resort> resortList = new ArrayList();
 
         String sql = "SELECT * FROM Resorts";
 
-        try (Connection jdbcConnection = DBCPDataSource.getConnection();
+        try (Connection jdbcConnection = HikariCPDataSource.getConnection();//getConnection();
              Statement statement = jdbcConnection.createStatement()) {
 
             ResultSet resultSet = statement.executeQuery(sql);
@@ -66,10 +66,10 @@ public class ResortsDAO {
         return resortList;
     }
 
-    public Resort getResortById(int resortId) throws SQLException{
+    public Resort getResortById(int resortId) throws Exception {
         String sql = "SELECT * FROM Resorts WHERE id = ?";
 
-        try (Connection jdbcConnection = DBCPDataSource.getConnection();
+        try (Connection jdbcConnection = HikariCPDataSource.getConnection();//getConnection();
              PreparedStatement statement = jdbcConnection.prepareStatement(sql)) {
 
             statement.setInt(1, resortId);

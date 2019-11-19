@@ -1,13 +1,13 @@
 package edu.neu.ds.controller;
 
 import com.google.gson.Gson;
+import edu.neu.ds.dao.ConnectionPoolContextListener;
 import edu.neu.ds.dao.ResortsDAO;
 import edu.neu.ds.dao.SeasonsDAO;
 import edu.neu.ds.dto.request.PostSeasonRequest;
 import edu.neu.ds.dto.response.ResortResponse;
 import edu.neu.ds.dto.response.SeasonResponse;
 import edu.neu.ds.model.Resort;
-import edu.neu.ds.model.Season;
 import edu.neu.ds.task.SkierBackgroundTask;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,10 +17,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedReader;
+import javax.sql.DataSource;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -29,7 +27,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-@WebServlet(name = "edu.neu.ds.controller.ResortServlet")
+//@WebServlet(name = "edu.neu.ds.controller.ResortServlet")
 public class ResortServlet extends HttpServlet {
 
     private static final Logger LOGGER = LogManager.getLogger(ResortServlet.class.getName());
@@ -44,21 +42,20 @@ public class ResortServlet extends HttpServlet {
     private static final String getResortURL = "/resorts";
     private static final String getSeasonURL = "/resorts/{resortID}/seasons";
     private static final String postSeasonURL = "/resorts/{resortID}/seasons";
+    private static DataSource pool;
 
     public void init() {
-
-        resortDAO = new ResortsDAO();
-        seasonsDAO = new SeasonsDAO();
+        DataSource pool = (DataSource) getServletContext().getAttribute("my-pool");
+        resortDAO = new ResortsDAO(pool);
+        seasonsDAO = new SeasonsDAO(pool);
         latencyForGetResorts = Collections.synchronizedList(new ArrayList());
         latencyForPostSeasons = Collections.synchronizedList(new ArrayList());
         latencyForGetSeasons = Collections.synchronizedList(new ArrayList());
         scheduler = Executors.newScheduledThreadPool(3);
-        scheduler.scheduleAtFixedRate(new SkierBackgroundTask(latencyForGetResorts, getResortURL, postOp),
-                1, 1, TimeUnit.MINUTES);
-        scheduler.scheduleAtFixedRate(new SkierBackgroundTask(latencyForPostSeasons, getSeasonURL, getOp),
-                1, 1, TimeUnit.MINUTES);
-        scheduler.scheduleAtFixedRate(new SkierBackgroundTask(latencyForGetSeasons, postSeasonURL, getOp),
-                1, 1, TimeUnit.MINUTES);
+        //pool = ConnectionPoolContextListener.createConnectionPool();
+
+
+
     }
 
     public void destroy() {
@@ -70,6 +67,9 @@ public class ResortServlet extends HttpServlet {
             throws ServletException, IOException {
         long startTimeForPostSeason = System.currentTimeMillis();
 
+//        DataSource pool = (DataSource) request.getServletContext().getAttribute("my-pool");
+        scheduler.scheduleAtFixedRate(new SkierBackgroundTask(latencyForGetResorts, getResortURL, postOp, pool),
+                1, 1, TimeUnit.MINUTES);
         long latency = 0;
 
         try {
@@ -138,10 +138,12 @@ public class ResortServlet extends HttpServlet {
                 res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
                 return;
             }
+            DataSource pool = (DataSource) req.getServletContext().getAttribute("my-pool");
 
             if (urlParts.size() == 1) {
-
-                List<Resort> resorts = resortDAO.listAllResorts();
+                scheduler.scheduleAtFixedRate(new SkierBackgroundTask(latencyForPostSeasons, getSeasonURL, getOp, pool),
+                        1, 1, TimeUnit.MINUTES);
+                List<Resort> resorts = resortDAO.listAllResorts(pool);
 
                 ResortResponse resortResponse = new ResortResponse(resorts);
                 String jsonString = new Gson().toJson(resortResponse);
@@ -152,6 +154,8 @@ public class ResortServlet extends HttpServlet {
                 res.getWriter().close();
             } else {
                 getSeason = true;
+                scheduler.scheduleAtFixedRate(new SkierBackgroundTask(latencyForGetSeasons, postSeasonURL, getOp, pool),
+                        1, 1, TimeUnit.MINUTES);
                   List<String> seasons = seasonsDAO.listAllSeasons(Integer.parseInt(urlParts.get(1)));
 
                 SeasonResponse seasonResponse = new SeasonResponse(seasons);

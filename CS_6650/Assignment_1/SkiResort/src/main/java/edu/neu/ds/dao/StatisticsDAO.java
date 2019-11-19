@@ -4,6 +4,7 @@ import edu.neu.ds.controller.SkierServlet;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,15 +15,15 @@ import java.util.*;
 
 public class StatisticsDAO {
     private static final Logger LOGGER = LogManager.getLogger(SkierServlet.class.getName());
-    static {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
+//    static {
+//        try {
+//            Class.forName("com.mysql.jdbc.Driver");
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
-    public void insertStats(List<Long> latencies, String url, String operation) throws SQLException {
+    public void insertStats(List<Long> latencies, String url, String operation) throws Exception {
 
         if (latencies.isEmpty()) {
             LOGGER.info("LATENCIES IS EMPTY");
@@ -49,7 +50,7 @@ public class StatisticsDAO {
 
         final int maxParameter = (latencyCopy.size()) * columnCount;
         final String query = builder.toString();
-        try (Connection jdbcConnection = DBCPDataSource.getConnection();
+        try (Connection jdbcConnection = HikariCPDataSource.getConnection();//ConnectionPoolContextListener.getConnection();
              PreparedStatement statement = jdbcConnection.prepareStatement(query)) {
             for (int parameterIndex = 1, valueIndex = 0; parameterIndex <= maxParameter; valueIndex++) {
                 statement.setString(parameterIndex++, url);

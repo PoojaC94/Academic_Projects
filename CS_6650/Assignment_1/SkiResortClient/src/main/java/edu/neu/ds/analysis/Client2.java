@@ -24,6 +24,7 @@ public class Client2 {
         // Phase 1
         System.out.println("Starting phase1");
         System.out.println(System.currentTimeMillis());
+        System.out.println(maxThreads);
         AtomicInteger requestsCompleted1 = new AtomicInteger();
         AtomicInteger requestsErrored1 = new AtomicInteger();
         int totalThreadsForPhase1 = maxThreads/4;
@@ -110,7 +111,7 @@ public class Client2 {
         System.out.println("Successful Requests = " + successfulRequests);
         System.out.println("Errored Requests = " + erroredRequests);
         int totalRequests = successfulRequests + erroredRequests;
-        long wallTime = endTime - initialTime;
+        long wallTime = (endTime - initialTime) / 1000;
         long throughput = totalRequests/wallTime;
         System.out.println("Total threads = " + maxThreads);
         System.out.println("Total requests = " + totalRequests);

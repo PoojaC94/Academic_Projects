@@ -1,6 +1,7 @@
 package edu.neu.ds.controller;
 
 import com.google.gson.Gson;
+import edu.neu.ds.dao.ConnectionPoolContextListener;
 import edu.neu.ds.dao.SkierDAO;
 import edu.neu.ds.dto.request.PostSkierRequest;
 import edu.neu.ds.dto.response.SkierResponse;
@@ -14,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.*;
@@ -21,7 +23,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-@WebServlet(name = "edu.neu.ds.controller.SkierServlet")
+//@WebServlet(name = "edu.neu.ds.controller.SkierServlet")
 public class SkierServlet extends HttpServlet {
 
     private Random random = new Random();
@@ -38,17 +40,21 @@ public class SkierServlet extends HttpServlet {
     private static final String getAllSeasonsURL = "/skiers/{skierID}/vertical";
 
     public void init() {
-        skierDAO = new SkierDAO();
+        DataSource pool = (DataSource) getServletContext().getAttribute("my-pool");
+        skierDAO = new SkierDAO(pool);
         latencyForGetSkiers = Collections.synchronizedList(new ArrayList());
         latencyForPostSkiers = Collections.synchronizedList(new ArrayList());
         latencyForGetAllSkiers = Collections.synchronizedList(new ArrayList());
         scheduler = Executors.newScheduledThreadPool(3);
-        scheduler.scheduleAtFixedRate(new SkierBackgroundTask(latencyForPostSkiers, postURL, postOp),
-                    1, 1, TimeUnit.MINUTES);
-        scheduler.scheduleAtFixedRate(new SkierBackgroundTask(latencyForGetSkiers, getVerticalURL, getOp),
-                1, 1, TimeUnit.MINUTES);
-        scheduler.scheduleAtFixedRate(new SkierBackgroundTask(latencyForGetAllSkiers, getAllSeasonsURL, getOp),
-                1, 1, TimeUnit.MINUTES);
+        //DataSource pool = ConnectionPoolContextListener.createConnectionPool();
+
+//        scheduler.scheduleAtFixedRate(new SkierBackgroundTask(latencyForPostSkiers, postURL, postOp, pool),
+//                1, 1, TimeUnit.MINUTES);
+//        scheduler.scheduleAtFixedRate(new SkierBackgroundTask(latencyForGetSkiers, getVerticalURL, getOp, pool),
+//                1, 1, TimeUnit.MINUTES);
+//        scheduler.scheduleAtFixedRate(new SkierBackgroundTask(latencyForGetAllSkiers, getAllSeasonsURL, getOp, pool),
+//                1, 1, TimeUnit.MINUTES);
+
     }
 
     public void destroy() {
@@ -61,10 +67,11 @@ public class SkierServlet extends HttpServlet {
         long startTimeForPostLift = System.currentTimeMillis();
 
         try {
-            LOGGER.info("Start edu.neu.ds.controller.SkierServlet Post request");
+            LOGGER.info("Start edu.neu.ds.controller.SkierServlet Post requestrtt");
             res.setContentType("application/json");
             String urlPath = request.getPathInfo();
             BufferedReader bufferedReader = request.getReader();
+            //DataSource pool = (DataSource) request.getServletContext().getAttribute("my-pool");
 
 
             LOGGER.info("UrlPath = " + urlPath);
@@ -83,6 +90,8 @@ public class SkierServlet extends HttpServlet {
 
                 return;
             }
+
+
             String s = null;
             PostSkierRequest postSkierRequest  = new Gson().fromJson(request.getReader(), PostSkierRequest.class);
 
@@ -101,11 +110,11 @@ public class SkierServlet extends HttpServlet {
             res.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 
         } finally {
-            long endTimeForPostLift = System.currentTimeMillis();
-            long latency = endTimeForPostLift - startTimeForPostLift;
-            synchronized (latencyForPostSkiers) {
-                latencyForPostSkiers.add(latency);
-            }
+//            long endTimeForPostLift = System.currentTimeMillis();
+//            long latency = endTimeForPostLift - startTimeForPostLift;
+//            synchronized (latencyForPostSkiers) {
+//                latencyForPostSkiers.add(latency);
+//            }
 
         }
 
@@ -127,12 +136,15 @@ public class SkierServlet extends HttpServlet {
 
                 return;
             }
+            DataSource pool = (DataSource) req.getServletContext().getAttribute("my-pool");
+
 
             List<String> urlParts = new ArrayList(Arrays.asList(urlPath.split("/")));
             List<String> queryParts;
 
             if (queryString == null || queryString.isEmpty()) {
                 LOGGER.info("Get Vertical");
+
                 queryParts = new ArrayList<String>();
                 if (!isUrlValid(urlParts, queryParts)) {
                     LOGGER.error("Invalid url");
@@ -197,17 +209,17 @@ public class SkierServlet extends HttpServlet {
             e.printStackTrace();
             res.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         } finally {
-            long endTimeForGetLift = System.currentTimeMillis();
-            long latency = endTimeForGetLift - startTimeForGetLift;
-            if (getAll) {
-                synchronized (latencyForGetAllSkiers) {
-                    latencyForGetAllSkiers.add(latency);
-                }
-            } else {
-                synchronized (latencyForGetSkiers) {
-                    latencyForGetSkiers.add(latency);
-                }
-            }
+//            long endTimeForGetLift = System.currentTimeMillis();
+//            long latency = endTimeForGetLift - startTimeForGetLift;
+//            if (getAll) {
+//                synchronized (latencyForGetAllSkiers) {
+//                    latencyForGetAllSkiers.add(latency);
+//                }
+//            } else {
+//                synchronized (latencyForGetSkiers) {
+//                    latencyForGetSkiers.add(latency);
+//                }
+//            }
         }
     }
 
